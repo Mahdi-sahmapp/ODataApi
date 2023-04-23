@@ -25,7 +25,7 @@ namespace ODataApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
-            var city = await _repository.GetAll(cancellationToken).ToListAsync();
+            var city = await _repository.GetAll().ToListAsync(cancellationToken);
 
             if (!city.Any())
                 return NotFound();

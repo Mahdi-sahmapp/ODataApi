@@ -27,7 +27,7 @@ namespace ODataApi.Services
             return true;
         }
 
-        IQueryable<T> IRepository<T>.GetAll(CancellationToken cancellationToken)
+        IQueryable<T> IRepository<T>.GetAll()
         {
             return _context.Set<T>().AsQueryable();
         }

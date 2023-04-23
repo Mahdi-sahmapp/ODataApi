@@ -30,7 +30,7 @@ namespace ODataApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Getall(CancellationToken cancellationToken)
         {
-            var person = await _repository.GetAll(cancellationToken).Include(a=>a.City).ToListAsync();
+            var person = await _repository.GetAll().Include(a=>a.City).ToListAsync(cancellationToken);
 
             return Ok(person);
         }

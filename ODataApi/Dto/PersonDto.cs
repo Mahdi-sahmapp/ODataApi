@@ -1,5 +1,8 @@
-﻿namespace ODataApi.Dto
+﻿using ODataApi.Atttribute;
+
+namespace ODataApi.Dto
 {
+    [GeneratedController("api/person")]
     public class PersonDto
     {
         public string? Name { get; set; }

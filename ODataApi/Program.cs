@@ -25,7 +25,8 @@ builder.Services.AddDbContext<ODataDbContext>(opt =>
 });
 
 
-builder.Services.AddControllers()
+builder.Services.AddControllers(opt => opt.Conventions.Add(new GenericControllerRouteConvention()))
+    .ConfigureApplicationPartManager(opt=>opt.FeatureProviders.Add(new GenericTypeControllerFeatureProvider()))
     .AddNewtonsoftJson(option =>
     {
         option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
