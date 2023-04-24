@@ -12,6 +12,7 @@ namespace ODataApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class PersonController : ControllerBase
     {
 

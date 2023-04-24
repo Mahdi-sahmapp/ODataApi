@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ODataApi;
+using ODataApi.Atttribute;
 using ODataApi.Common;
 using ODataApi.Models;
 using ODataApi.Services;
@@ -25,8 +26,11 @@ builder.Services.AddDbContext<ODataDbContext>(opt =>
 });
 
 
-builder.Services.AddControllers(opt => opt.Conventions.Add(new GenericControllerRouteConvention()))
-    .ConfigureApplicationPartManager(opt=>opt.FeatureProviders.Add(new GenericTypeControllerFeatureProvider()))
+builder.Services.AddControllers(o => o.Conventions.Add(new GenericControllerNameConvention()))
+    .ConfigureApplicationPartManager(c =>
+    {
+        c.FeatureProviders.Add(new GenericTypeControllerFeatureProvider());
+    })
     .AddNewtonsoftJson(option =>
     {
         option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

@@ -9,6 +9,7 @@ namespace ODataApi.Controllers
 {
     [Route("api/controller")]
     [ApiController]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class CityController:ControllerBase
     {
         private IMapper _mapper;

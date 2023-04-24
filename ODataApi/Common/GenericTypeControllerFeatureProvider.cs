@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Controllers;
 using ODataApi.Atttribute;
 using ODataApi.Controllers;
+using ODataApi.EntityType;
 using System.Reflection;
 
 namespace ODataApi.Common
@@ -10,14 +11,13 @@ namespace ODataApi.Common
     {
         public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature)
         {
-            var currentAssembly = typeof(GenericTypeControllerFeatureProvider).Assembly;
-            var candidates = currentAssembly.GetExportedTypes().Where(a => a.GetCustomAttributes<GeneratedControllerAttribute>().Any());
-
-            foreach (var candidate in candidates)
+            foreach (var model_type in EntityTypes.model_types)
             {
-                feature.Controllers.Add(
-                    typeof(BaseController<>).MakeGenericType(candidate).GetTypeInfo()
-                    );
+                var entity_type = model_type.Key;
+                var entity_request_types = model_type.Value[0];
+                Type[] typeArgs = { entity_type, model_type.Value[0], model_type.Value[1] };
+                var controller_type = typeof(BaseController<,,>).MakeGenericType(typeArgs).GetTypeInfo();
+                feature.Controllers.Add(controller_type);
             }
         }
     }
