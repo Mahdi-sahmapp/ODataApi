@@ -6,6 +6,8 @@ using ODataApi.Atttribute;
 using ODataApi.Dto;
 using ODataApi.Models;
 using ODataApi.Services;
+using System.Linq;
+using System.Reflection;
 
 namespace ODataApi.Controllers
 {
@@ -26,6 +28,7 @@ namespace ODataApi.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
+
             var Entites = await _repository.GetAll().ToListAsync(cancellationToken) ;
 
             if (!Entites.Any())

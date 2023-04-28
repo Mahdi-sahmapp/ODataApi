@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ODataApi.Models
 {
+    [Table("Person")]
     public partial class Person
     {
         public int Id { get; set; }

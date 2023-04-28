@@ -11,7 +11,7 @@ namespace ODataApi.Common
     {
         public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature)
         {
-            foreach (var model_type in EntityTypes.model_types)
+            foreach (var model_type in EntityTypes.Getmodel_types3())
             {
                 var entity_type = model_type.Key;
                 var entity_request_types = model_type.Value[0];
